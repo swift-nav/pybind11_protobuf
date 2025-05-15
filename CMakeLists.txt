@@ -9,7 +9,9 @@ set(ABSL_PROPAGATE_CXX_STD ON)
 find_package(Python3 REQUIRED COMPONENTS Development Interpreter)
 find_package(Protobuf REQUIRED)
 
-add_subdirectory(third_party/abseil-cpp)
+if (NOT TARGET absl::base)
+  add_subdirectory(third_party/abseil-cpp)
+endif()
 add_subdirectory(third_party/pybind11)
 
 add_library(pybind11_protobuf
